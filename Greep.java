@@ -26,7 +26,7 @@ public class Greep extends Creature
     {
         super(ship);
     }
-
+    public int pause = 50;//Timer to delay some greep actions
     /**
      * Do what a greep's gotta do.
      */
@@ -38,13 +38,39 @@ public class Greep extends Creature
                 dropTomato();
             }
             else {
-                turnHome();
+                if(atWater()==true)
+                {   
+                    turn(20);
+                    pause = 50;
+                }
+                if(pause == 0)
+                {
+                    turnHome();
+                }
+                if(pause>0)
+                {
+                    pause--;
+                }
+                if(pause == 50)
+                {
+                    spit
+                }
                 move();
+            
             }
         }
-        else {
-            move();
-            checkFood();
+        else 
+        {
+            if(atWater()==true)
+            {
+                turn(80);
+            }
+            if(atWorldEdge()==true)
+            {
+                turn(80);
+            }
+        move(20);
+        checkFood();
         }
     }
     
@@ -67,7 +93,7 @@ public class Greep extends Creature
      */
     public static String getAuthorName()
     {
-        return "Anonymous";  // write your name here!
+        return "Jackson H.";  // write your name here!
     }
 
     /**
